@@ -6,7 +6,7 @@ defmodule Milo.Repo.Migrations.CreateUsers do
       add :id, :binary_id, primary_key: true
       add :email, :string
       add :name, :string
-      add :google_token, :string
+      add :google_token, :text
 
       timestamps(type: :utc_datetime)
     end

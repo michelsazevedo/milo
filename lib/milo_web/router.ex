@@ -14,16 +14,27 @@ defmodule MiloWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticated do
+    plug MiloWeb.UserAuth, :fetch_current_user
+    plug MiloWeb.UserAuth, :require_authenticated_user
+  end
+
   scope "/", MiloWeb do
     pipe_through :browser
 
     get "/", PageController, :home
-
     get "/signup", SignupController, :index
-    live "/onboarding", OnboardingLive, :index
 
     get "/auth/:provider", AuthController, :request
     get "/auth/:provider/callback", AuthController, :callback
+  end
+
+  scope "/", MiloWeb do
+    pipe_through [:browser, :authenticated]
+
+    get "/onboarding", OnboardingController, :index
+
+    live "/inbox", InboxLive, :index
   end
 
   # Other scopes may use custom stacks.

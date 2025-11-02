@@ -9,6 +9,7 @@ defmodule MiloWeb.AuthController do
     case strategy.authorize_url(config) do
       {:ok, %{url: url, session_params: session_params}} ->
         conn
+        |> configure_session(renew: false)
         |> put_session(:google_session_params, session_params)
         |> redirect(external: url)
 
@@ -25,8 +26,7 @@ defmodule MiloWeb.AuthController do
     session_params = get_session(conn, :google_session_params)
 
     if session_params do
-      merged_params = Map.merge(params, session_params)
-      case strategy.callback(config, merged_params) do
+      case strategy.callback(Keyword.put(config, :session_params, session_params), params) do
         {:ok, %{user: userinfo, token: token}} ->
           attrs = %{
             "email" => userinfo["email"],
@@ -38,8 +38,8 @@ defmodule MiloWeb.AuthController do
           case Accounts.get_or_create_user_from_google(attrs) do
             {:ok, user} ->
               conn
-              |> put_session(:user_id, user.id)
               |> configure_session(renew: true)
+              |> put_session(:user_id, user.id)
               |> redirect(to: ~p"/onboarding")
 
             {:error, _changeset} ->
@@ -47,7 +47,7 @@ defmodule MiloWeb.AuthController do
               |> put_flash(:error, "Error saving user.")
               |> redirect(to: ~p"/signup")
           end
-        {:error, _} ->
+        {:error, _reason} ->
           conn
           |> put_flash(:error, "Error during Google authentication.")
           |> redirect(to: ~p"/signup")

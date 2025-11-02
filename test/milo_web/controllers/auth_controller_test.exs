@@ -30,7 +30,7 @@ defmodule MiloWeb.AuthControllerTest do
         build_conn()
         |> get(~p"/auth/google")
 
-      assert redirected_to(conn) =~ "/oauth/authorize"
+      assert redirected_to(conn) == "http://localhost:4000/oauth/authorize"
       assert get_session(conn, :google_session_params) == %{"state" => "xyz"}
     end
 
@@ -88,7 +88,7 @@ defmodule MiloWeb.AuthControllerTest do
     end
   end
 
-  describe "callback/2 – existing user" do
+  describe "callback – existing user" do
     setup %{google_config: _config} do
       {:ok, user} =
         %Milo.Accounts.User{}
@@ -138,7 +138,7 @@ defmodule MiloWeb.AuthControllerTest do
     end
   end
 
-  describe "callback/2 error handling" do
+  describe "callback error handling" do
     setup %{google_config: _config} do
       session_params = %{"state" => "valid-state"}
 
