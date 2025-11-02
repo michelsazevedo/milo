@@ -22,6 +22,18 @@ config :milo, MiloWeb.Endpoint,
   pubsub_server: Milo.PubSub,
   live_view: [signing_salt: "p/knsKuG"]
 
+config :assent, :providers,
+  google: [
+    client_id: System.get_env("GOOGLE_CLIENT_ID"),
+    client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
+    strategy: Assent.Strategy.Google,
+    redirect_uri: System.get_env("GOOGLE_REDIRECT_URI") || "#{MiloWeb.Endpoint.url()}/auth/google/callback",
+    authorization_params: [
+      scope: "openid email profile",
+      access_type: "offline"
+    ]
+  ]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

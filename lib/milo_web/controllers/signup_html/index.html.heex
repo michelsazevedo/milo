@@ -1,0 +1,43 @@
+<div class="min-h-screen flex flex-col md:flex-row font-sans">
+  <!-- Left Side -->
+  <div class="w-full md:w-1/2 flex flex-col justify-center items-center px-6 lg:px-16 bg-white">
+    <div class="max-w-sm w-full text-center">
+      <!-- Logo -->
+      <div class="flex items-center justify-center gap-2 mb-8">
+        <.link href="/">
+					<img src={~p"/images/milo_logo.png"} alt="Milo" class="w-9 h-9" />
+					<span class="text-2xl font-semibold text-gray-800">Milo</span>
+        </.link>    
+      </div>
+
+      <!-- Title -->
+      <h2 class="text-lg font-semibold text-gray-700">Automate Your Inbox</h2>
+      <p class="text-gray-500 mb-8">
+        Connect your Gmail and let AI automatically sort, summarize, and manage your inbox.
+      </p>
+
+      <!-- Google -->
+      <a
+        href={~p"/auth/google"}
+        class="w-full flex items-center justify-center gap-2 bg-[#2d4999] hover:bg-[#203a8e] text-white py-3 rounded-sm font-medium mt-4 transition"
+      >
+        <i class="fa-brands fa-google"></i>
+        <span>Google</span>
+      </a>
+
+      <!-- Terms -->
+      <p class="text-gray-400 text-sm mt-6">
+        By registration you agree to our
+        <a href="#" class="text-blue-500 hover:underline">Terms of Use</a>
+        and
+        <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Right Side -->
+  <div class="hidden md:flex w-1/2 bg-[#f9fbff] items-center justify-center relative overflow-hidden">
+    <div class="h-screen w-full bg-blue-200">
+    </div>
+  </div>
+</div>

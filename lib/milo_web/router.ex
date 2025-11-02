@@ -18,6 +18,12 @@ defmodule MiloWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    get "/signup", SignupController, :index
+    live "/onboarding", OnboardingLive, :index
+
+    get "/auth/:provider", AuthController, :request
+    get "/auth/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.

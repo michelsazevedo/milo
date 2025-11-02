@@ -67,6 +67,8 @@ defmodule Milo.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       {:assent, "~> 0.3.1"},
+      {:mox, "~> 1.2", only: :test},
+      {:bypass, "~> 2.1", only: :test},
     ]
   end
 
