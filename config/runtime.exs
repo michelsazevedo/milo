@@ -55,6 +55,21 @@ if config_env() == :prod do
 
   config :milo, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
+  if config_env() == :prod do
+    config :assent, :providers,
+    google: [
+      project_id: System.get_env("GOOGLE_PROJECT_ID"),
+      client_id: System.get_env("GOOGLE_CLIENT_ID"),
+      client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
+      strategy: Assent.Strategy.Google,
+      redirect_uri: System.get_env("GOOGLE_REDIRECT_URI") || "http://localhost:4000/auth/google/callback",
+      authorization_params: [
+        scope: "openid email profile",
+        access_type: "offline"
+      ]
+    ]
+  end
+
   config :milo, MiloWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [
