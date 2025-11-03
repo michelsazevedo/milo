@@ -25,9 +25,9 @@ Install [Docker](https://www.docker.com/what-docker) and then [Docker Compose](h
 1. Run `mix deps.get` to download dependencies.
 2. Setup database:
 	- `docker compose up -d db`
-	- mix ecto.create
-	- mix ecto.migrate
-	- mix run priv/repo/seeds.exs
+	- `mix ecto.create`
+	- `mix ecto.migrate`
+	- `mix run priv/repo/seeds.exs`
 
 3. Finally, start your local server with `mix phx.server` and milo should be up and running on your localhost!
 
@@ -35,10 +35,8 @@ Install [Docker](https://www.docker.com/what-docker) and then [Docker Compose](h
 
 ### Features
 
-## Features
-
 - **Google Account Authentication**  
-  Securely connect your Gmail account with Milo using Google OAuth. No sensitive credentials are stored — authentication is handled safely through Google.
+  Securely connect your Gmail account with Milo using Google OAuth. No sensitive credentials are stored. Authentication is handled safely through Google.
 
 - **Real-time Email Updates**  
   Milo listens for new emails via Google Pub/Sub, ensuring that your inbox updates instantly as soon as a new message arrives.
