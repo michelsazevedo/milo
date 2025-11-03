@@ -1,18 +1,12 @@
 # Milo
 
-To start your Phoenix server:
+![Milo Logo](./priv/static/images/milo_logo.png)
 
-* Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+Milo is an AI-powered email assistant designed to help you **organize, summarize Gmail inbox automatically**. With Milo, you can save hours every week by letting AI sort your emails, highlight important messages, and keep your inbox organized effortlessly.  
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+> Try it now: [Milo Live](https://miloai.fly.dev)
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+![Milo](./priv/static/images/landing.png)
 
-## Learn more
 
-* Official website: https://www.phoenixframework.org/
-* Guides: https://hexdocs.pm/phoenix/overview.html
-* Docs: https://hexdocs.pm/phoenix
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+## Instructions

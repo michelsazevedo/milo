@@ -28,7 +28,7 @@ config :assent, :providers,
     client_id: System.get_env("GOOGLE_CLIENT_ID"),
     client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
     strategy: Assent.Strategy.Google,
-    redirect_uri: System.get_env("GOOGLE_REDIRECT_URI") || "#{MiloWeb.Endpoint.url()}/auth/google/callback",
+    redirect_uri: System.get_env("GOOGLE_REDIRECT_URI") || "http://localhost:4000/auth/google/callback",
     authorization_params: [
       scope: "openid email profile",
       access_type: "offline"
@@ -80,6 +80,12 @@ config :openai,
 # Configure OpenAI module for AI categorization
 # Can be overridden in test environment for mocking
 config :milo, :openai_module, OpenAI
+
+# Configure dependency injection modules for SyncWorker
+# Can be overridden in test environment for mocking
+config :milo, :google_client_module, Milo.GoogleClient
+config :milo, :categorizer_module, Milo.AI.Categorizer
+config :milo, :endpoint_module, MiloWeb.Endpoint
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
