@@ -45,3 +45,9 @@ Install [Docker](https://www.docker.com/what-docker) and then [Docker Compose](h
 
 - **Smart Email Processing & Categorization**  
   Incoming emails are automatically processed by Milo’s AI engine and sorted into categories. You can customize categories or rely on the AI to organize your inbox efficiently, helping you focus only on what matters.
+
+<p align="center">
+  <img src="./priv/static/images/signup.png" alt="Milo" width="800" />
+  <img src="./priv/static/images/onboarding.png" alt="Milo" width="800" />
+  <img src="./priv/static/images/inbox.png" alt="Milo" width="800" />
+</p>
