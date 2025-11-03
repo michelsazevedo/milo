@@ -29,7 +29,7 @@ Install [Docker](https://www.docker.com/what-docker) and then [Docker Compose](h
 	- mix ecto.migrate
 	- mix run priv/repo/seeds.exs
 
-3.Finally, start your local server with `mix phx.server` and milo should be up and running on your localhost!
+3. Finally, start your local server with `mix phx.server` and milo should be up and running on your localhost!
 
 4. Aaaaand, you can run the automated tests suite running a `mix test` with no other parameters!
 
