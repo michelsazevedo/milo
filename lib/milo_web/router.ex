@@ -37,6 +37,10 @@ defmodule MiloWeb.Router do
     live "/inbox", InboxLive, :index
   end
 
+  scope "/webhook", MiloWeb do
+    post "/gmail", GmailWebhookController, :receive
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", MiloWeb do
   #   pipe_through :api

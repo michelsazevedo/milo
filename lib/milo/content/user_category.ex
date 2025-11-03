@@ -2,10 +2,13 @@ defmodule Milo.Content.UserCategory do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Milo.Content.Category
+
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "user_categories" do
     field :user_id, :binary_id
-    field :category_id, :binary_id
+
+    belongs_to :category, Category, type: :binary_id
 
     timestamps()
   end

@@ -69,6 +69,8 @@ defmodule Milo.MixProject do
       {:assent, "~> 0.3.1"},
       {:mox, "~> 1.2", only: :test},
       {:bypass, "~> 2.1", only: :test},
+      {:oban, "~> 2.18"},
+      {:openai, "~> 0.6"}
     ]
   end
 

@@ -24,6 +24,7 @@ config :milo, MiloWeb.Endpoint,
 
 config :assent, :providers,
   google: [
+    project_id: System.get_env("GOOGLE_PROJECT_ID"),
     client_id: System.get_env("GOOGLE_CLIENT_ID"),
     client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
     strategy: Assent.Strategy.Google,
@@ -71,6 +72,14 @@ config :logger, :default_formatter,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Configure OpenAI API for AI categorization
+config :openai,
+  api_key: System.get_env("OPENAI_API_KEY")
+
+# Configure OpenAI module for AI categorization
+# Can be overridden in test environment for mocking
+config :milo, :openai_module, OpenAI
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

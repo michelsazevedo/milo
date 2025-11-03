@@ -33,6 +33,26 @@ defmodule MiloWeb.ConnCase do
 
   setup tags do
     Milo.DataCase.setup_sandbox(tags)
+
+    # Ensure Oban is started for testing with the correct name and config
+    config =
+      Application.get_env(:milo, Oban, [])
+      |> Keyword.put_new(:name, Oban)
+      |> Keyword.put_new(:repo, Milo.Repo)
+
+    # Ensure config is available
+    Application.put_env(:milo, Oban, config, persistent: false)
+
+    case Process.whereis(Oban) do
+      nil ->
+        case Oban.start_link(config) do
+          {:ok, _pid} -> :ok
+          {:error, {:already_started, _pid}} -> :ok
+        end
+      _pid ->
+        :ok
+    end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

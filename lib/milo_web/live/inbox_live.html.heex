@@ -1,0 +1,31 @@
+<div class="min-h-screen bg-gray-50">
+  <h2 class="text-2xl font-bold text-center my-4">Inbox</h2>
+
+  <div class="flex justify-center gap-4 mb-6">
+    <%= for cat <- @categories do %>
+      <button
+        phx-click="switch_tab"
+        phx-value-cat={cat}
+        class={[
+          "px-4 py-2 rounded",
+          if(cat == @active, do: "bg-green-500 text-white", else: "bg-gray-200")
+        ]}
+      >
+        <%= cat %>
+      </button>
+    <% end %>
+  </div>
+
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
+    <%= if emails = @emails[@active] do %>
+      <%= for email <- emails do %>
+        <div class="border-b py-3">
+          <h4 class="font-semibold text-gray-700">Email ID: <%= email.id %></h4>
+          <p class="text-gray-600 mt-1"><%= email.body %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-gray-400 text-center">No emails for this category.</p>
+    <% end %>
+  </div>
+</div>

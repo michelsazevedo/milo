@@ -4,29 +4,27 @@ defmodule MiloWeb.OnboardingLiveTest do
   alias Milo.{Accounts, Content}
 
   setup do
-    # Create some test categories
-    {:ok, cat1} =
-      Content.create_category(%{
-        "name" => "Work",
-        "description" => "Work emails",
-        "is_default" => true
-      })
-
-    {:ok, cat2} =
-      Content.create_category(%{
-        "name" => "Personal",
-        "description" => "Personal emails",
-        "is_default" => true
-      })
-
-    {:ok, cat3} =
-      Content.create_category(%{
-        "name" => "Shopping",
-        "description" => "Shopping emails",
-        "is_default" => false
-      })
+    # Get or create test categories
+    cat1 = get_or_create_category("Work", "Work emails", true)
+    cat2 = get_or_create_category("Personal", "Personal emails", true)
+    cat3 = get_or_create_category("Shopping", "Shopping emails", false)
 
     {:ok, categories: [cat1, cat2, cat3]}
+  end
+
+  defp get_or_create_category(name, description, is_default) do
+    case Content.get_category_by_name(name) do
+      nil ->
+        {:ok, category} = Content.create_category(%{
+          "name" => name,
+          "description" => description,
+          "is_default" => is_default
+        })
+        category
+
+      category ->
+        category
+    end
   end
 
   describe "mount" do

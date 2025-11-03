@@ -35,3 +35,13 @@ config :phoenix, :plug_init_mode, :runtime
 # Enable helpful, but potentially expensive runtime checks
 config :phoenix_live_view,
   enable_expensive_runtime_checks: true
+
+# Configure Oban for testing
+config :milo, Oban,
+  engine: Oban.Engines.Basic,
+  queues: false,
+  plugins: false,
+  repo: Milo.Repo
+
+# Note: openai_module is set dynamically in tests via Application.put_env
+# to use the mock module, so we don't configure it here
